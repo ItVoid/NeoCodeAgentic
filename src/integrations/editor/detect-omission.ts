@@ -1,5 +1,5 @@
 import { HostProvider } from "@hosts/host-provider"
-import { ShowMessageType } from "@shared/proto/host/window"
+import { ShowMessageType } from "@shared/proto/index.host"
 import { openExternal } from "@utils/env"
 
 /**

@@ -204,7 +204,7 @@ export const ExtensionStateContextProvider: React.FC<{
 		mode: "act",
 		platform: DEFAULT_PLATFORM,
 		environment: Environment.production,
-		telemetrySetting: "unset",
+		telemetrySetting: "disabled",
 		distinctId: "",
 		planActSeparateModelsSetting: true,
 		enableCheckpointsSetting: true,

@@ -9,30 +9,7 @@ const ConfigureServersView = () => {
 
 	return (
 		<div style={{ padding: "16px 20px" }}>
-			<div
-				style={{
-					color: "var(--vscode-foreground)",
-					fontSize: "13px",
-					marginBottom: "16px",
-					marginTop: "5px",
-				}}>
-				The{" "}
-				<VSCodeLink href="https://github.com/modelcontextprotocol" style={{ display: "inline" }}>
-					Model Context Protocol
-				</VSCodeLink>{" "}
-				enables communication with locally running MCP servers that provide additional tools and resources to extend
-				Cline's capabilities. You can use{" "}
-				<VSCodeLink href="https://github.com/modelcontextprotocol/servers" style={{ display: "inline" }}>
-					community-made servers
-				</VSCodeLink>{" "}
-				or ask Cline to create new tools specific to your workflow (e.g., "add a tool that gets the latest npm docs").{" "}
-				<VSCodeLink href="https://x.com/sdrzn/status/1867271665086074969" style={{ display: "inline" }}>
-					See a demo here.
-				</VSCodeLink>
-			</div>
-
 			<ServersToggleList hasTrashIcon={false} isExpandable={true} servers={servers} />
-
 			{/* Settings Section */}
 			<div style={{ marginBottom: "20px", marginTop: 10 }}>
 				<VSCodeButton

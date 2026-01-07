@@ -175,7 +175,7 @@ export const BrowserSettingsSection: React.FC<BrowserSettingsSectionProps> = ({ 
 								color: "var(--vscode-descriptionForeground)",
 								margin: "4px 0 0 0px",
 							}}>
-							Prevent Cline from using browser actions (e.g. launch, click, type).
+							Prevent NeoCodeAgentic from using browser actions (e.g. launch, click, type).
 						</p>
 					</div>
 
@@ -213,57 +213,6 @@ export const BrowserSettingsSection: React.FC<BrowserSettingsSectionProps> = ({ 
 						</div>
 
 						<div style={{ marginBottom: 0 }}>
-							{" "}
-							{/* This div now contains Remote Connection & Chrome Path */}
-							<div
-								style={{
-									marginBottom: 4,
-									display: "flex",
-									alignItems: "center",
-									justifyContent: "space-between",
-								}}>
-								<VSCodeCheckbox
-									checked={browserSettings.remoteBrowserEnabled}
-									onChange={(e) => {
-										const enabled = (e.target as HTMLInputElement).checked
-										updateSetting("browserSettings", { remoteBrowserEnabled: enabled })
-										// If disabling, also clear the host
-										if (!enabled) {
-											updateSetting("browserSettings", { remoteBrowserHost: undefined })
-										}
-									}}>
-									Use remote browser connection
-								</VSCodeCheckbox>
-								<ConnectionStatusIndicator
-									isChecking={isCheckingConnection}
-									isConnected={connectionStatus}
-									remoteBrowserEnabled={browserSettings.remoteBrowserEnabled}
-								/>
-							</div>
-							<p
-								style={{
-									fontSize: "12px",
-									color: "var(--vscode-descriptionForeground)",
-									margin: "0 0 6px 0px",
-								}}>
-								Enable Cline to use your Chrome
-								{isBundled
-									? "(not detected on your machine)"
-									: detectedChromePath
-										? ` (${detectedChromePath})`
-										: ""}
-								. You can specify a custom path below. Using a remote browser connection requires starting Chrome
-								in debug mode
-								{browserSettings.remoteBrowserEnabled ? (
-									<>
-										{" "}
-										manually (<code>--remote-debugging-port=9222</code>) or using the button below. Enter the
-										host address or leave it blank for automatic discovery.
-									</>
-								) : (
-									"."
-								)}
-							</p>
 							{/* Moved remote-specific settings to appear directly after enabling remote connection */}
 							{browserSettings.remoteBrowserEnabled && (
 								<div style={{ marginLeft: 0, marginTop: 8 }}>

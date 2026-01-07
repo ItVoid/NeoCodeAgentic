@@ -12,12 +12,9 @@ type UserTypeSelection = {
 
 export const STEP_CONFIG = {
 	0: {
-		title: "How will you use Cline?",
-		description: "Select an option below to get started.",
-		buttons: [
-			{ text: "Continue", action: "next", variant: "default" },
-			{ text: "Login to Cline", action: "signin", variant: "secondary" },
-		],
+		title: "NeoCode Agentic",
+		description: "Fill the form to use it!",
+		buttons: [{ text: "Continue", action: "next", variant: "default" }],
 	},
 	[NEW_USER_TYPE.FREE]: {
 		title: "Select a free model",
@@ -35,10 +32,7 @@ export const STEP_CONFIG = {
 	},
 	[NEW_USER_TYPE.BYOK]: {
 		title: "Configure your provider",
-		buttons: [
-			{ text: "Continue", action: "done", variant: "default" },
-			{ text: "Back", action: "back", variant: "secondary" },
-		],
+		buttons: [{ text: "Continue", action: "done", variant: "default" }],
 	},
 	2: {
 		title: "Almost there!",

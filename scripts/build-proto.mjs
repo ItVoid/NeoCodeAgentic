@@ -12,7 +12,6 @@ import { main as generateHostBridgeClient } from "./generate-host-bridge-client.
 import { main as generateProtoBusSetup } from "./generate-protobus-setup.mjs"
 
 const require = createRequire(import.meta.url)
-const PROTOC = path.join(require.resolve("grpc-tools"), "../bin/protoc")
 
 const PROTO_DIR = path.resolve("proto")
 const TS_OUT_DIR = path.resolve("src/shared/proto")
@@ -21,6 +20,27 @@ const NICE_JS_OUT_DIR = path.resolve("src/generated/nice-grpc")
 const DESCRIPTOR_OUT_DIR = path.resolve("dist-standalone/proto")
 
 const isWindows = process.platform === "win32"
+
+// Find protoc binary - use winget-installed version on Windows, fallback to grpc-tools
+let PROTOC
+if (isWindows) {
+	const wingetProtoc = path.join(
+		os.homedir(),
+		"AppData/Local/Microsoft/WinGet/Packages/Google.Protobuf_Microsoft.Winget.Source_8wekyb3d8bbwe/bin/protoc.exe",
+	)
+	try {
+		if (require("fs").existsSync(wingetProtoc)) {
+			PROTOC = wingetProtoc
+		} else {
+			PROTOC = "protoc" // Fallback to PATH
+		}
+	} catch {
+		PROTOC = "protoc"
+	}
+} else {
+	PROTOC = path.join(require.resolve("grpc-tools"), "../bin/protoc")
+}
+
 const TS_PROTO_PLUGIN = isWindows
 	? path.resolve("node_modules/.bin/protoc-gen-ts_proto.cmd") // Use the .bin directory path for Windows
 	: require.resolve("ts-proto/protoc-gen-ts_proto")

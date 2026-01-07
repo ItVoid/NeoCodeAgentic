@@ -111,8 +111,8 @@
 			"activitybar": [
 				{
 					"id": "claude-dev-ActivityBar",
-					"title": "Cline",
-					"icon": "assets/icons/icon.svg"
+					"title": "NeoCode Agentic",
+					"icon": "assets/icons/icon.png"
 				}
 			]
 		},
@@ -141,11 +141,6 @@
 				"command": "cline.historyButtonClicked",
 				"title": "History",
 				"icon": "$(history)"
-			},
-			{
-				"command": "cline.accountButtonClicked",
-				"title": "Account",
-				"icon": "$(account)"
 			},
 			{
 				"command": "cline.settingsButtonClicked",
@@ -266,11 +261,6 @@
 				{
 					"command": "cline.historyButtonClicked",
 					"group": "navigation@3",
-					"when": "view == claude-dev.SidebarProvider"
-				},
-				{
-					"command": "cline.accountButtonClicked",
-					"group": "navigation@5",
 					"when": "view == claude-dev.SidebarProvider"
 				},
 				{
@@ -433,7 +423,7 @@
 		"chalk": "5.6.2",
 		"cross-env": "^10.1.0",
 		"esbuild": "^0.25.0",
-		"grpc-tools": "^1.13.0",
+		"grpc-tools": "^1.13.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.1.0",
 		"minimatch": "^3.0.3",

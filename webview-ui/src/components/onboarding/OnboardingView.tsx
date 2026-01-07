@@ -2,7 +2,6 @@ import type { ModelInfo } from "@shared/api"
 import type { OnboardingModel, OnboardingModelGroup, OpenRouterModelInfo } from "@shared/proto/index.cline"
 import { AlertCircleIcon, CircleCheckIcon, CircleIcon, ListIcon, LoaderCircleIcon, StarIcon, ZapIcon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import ClineLogoWhite from "@/assets/ClineLogoWhite"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -248,7 +247,7 @@ const OnboardingStepContent = ({
 	onboardingModels,
 }: OnboardingStepContentProps) => {
 	if (step === 0) {
-		return <UserTypeSelectionStep onSelectUserType={onSelectUserType} userType={userType} />
+		return <ApiConfigurationSection />
 	}
 	if (step === 2) {
 		return null
@@ -276,7 +275,7 @@ const OnboardingView = ({ onboardingModels }: { onboardingModels: OnboardingMode
 
 	const [stepNumber, setStepNumber] = useState(0)
 	const [isActionLoading, setIsActionLoading] = useState(false)
-	const [userType, setUserType] = useState<NEW_USER_TYPE>(NEW_USER_TYPE.FREE)
+	const [userType, setUserType] = useState<NEW_USER_TYPE>(NEW_USER_TYPE.BYOK)
 
 	const [selectedModelId, setSelectedModelId] = useState("")
 	const [searchTerm, setSearchTerm] = useState("")
@@ -377,7 +376,7 @@ const OnboardingView = ({ onboardingModels }: { onboardingModels: OnboardingMode
 	return (
 		<div className="fixed inset-0 p-0 flex flex-col w-full">
 			<div className="h-full px-5 xs:mx-10 overflow-auto flex flex-col gap-4 items-center justify-center">
-				<ClineLogoWhite className="size-16 flex-shrink-0" />
+				<br />
 				<h2 className="text-lg font-semibold p-0 flex-shrink-0">{stepDisplayInfo.title}</h2>
 				{stepNumber === 2 && (
 					<div className="flex w-full max-w-lg flex-col gap-6 my-4 items-center ">

@@ -1,9 +1,8 @@
 import { EmptyRequest } from "@shared/proto/cline/common"
 import { AddRemoteMcpServerRequest, McpServers } from "@shared/proto/cline/mcp"
 import { convertProtoMcpServersToMcpServers } from "@shared/proto-conversions/mcp/mcp-server-conversion"
-import { VSCodeButton, VSCodeLink, VSCodeRadio, VSCodeRadioGroup, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeButton, VSCodeRadio, VSCodeRadioGroup, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 import { useState } from "react"
-import { LINKS } from "@/constants"
 import { useExtensionState } from "@/context/ExtensionStateContext"
 import { McpServiceClient } from "@/services/grpc-client"
 
@@ -66,12 +65,8 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 	return (
 		<div className="p-4 px-5">
 			<div className="text-(--vscode-foreground) mb-2">
-				Add a remote MCP server by providing a name and its URL endpoint. Learn more{" "}
-				<VSCodeLink href={LINKS.DOCUMENTATION.REMOTE_MCP_SERVER_DOCS} style={{ display: "inline" }}>
-					here.
-				</VSCodeLink>
+				Add a remote MCP server by providing a name and its URL endpoint.
 			</div>
-
 			<form onSubmit={handleSubmit}>
 				<div className="mb-2">
 					<VSCodeTextField

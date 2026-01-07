@@ -4,7 +4,6 @@ import { VSCodeButton } from "@vscode/webview-ui-toolkit/react"
 import {
 	CheckCheck,
 	FlaskConical,
-	Info,
 	type LucideIcon,
 	SlidersHorizontal,
 	SquareMousePointer,
@@ -20,7 +19,6 @@ import { StateServiceClient } from "@/services/grpc-client"
 import { getEnvironmentColor } from "@/utils/environmentColors"
 import { Tab, TabContent, TabHeader, TabList, TabTrigger } from "../common/Tab"
 import SectionHeader from "./SectionHeader"
-import AboutSection from "./sections/AboutSection"
 import ApiConfigurationSection from "./sections/ApiConfigurationSection"
 import BrowserSettingsSection from "./sections/BrowserSettingsSection"
 import DebugSection from "./sections/DebugSection"
@@ -76,13 +74,6 @@ export const SETTINGS_TABS: SettingsTab[] = [
 		headerText: "General Settings",
 		icon: Wrench,
 	},
-	{
-		id: "about",
-		name: "About",
-		tooltipText: "About Cline",
-		headerText: "About",
-		icon: Info,
-	},
 	// Only show in dev mode
 	{
 		id: "debug",
@@ -125,7 +116,6 @@ const SettingsView = ({ onDone, targetSection }: SettingsViewProps) => {
 			features: FeatureSettingsSection,
 			browser: BrowserSettingsSection,
 			terminal: TerminalSettingsSection,
-			about: AboutSection,
 			debug: DebugSection,
 		}),
 		[],
@@ -231,8 +221,6 @@ const SettingsView = ({ onDone, targetSection }: SettingsViewProps) => {
 		const props: any = { renderSectionHeader }
 		if (activeTab === "debug") {
 			props.onResetState = handleResetState
-		} else if (activeTab === "about") {
-			props.version = version
 		}
 
 		return <Component {...props} />

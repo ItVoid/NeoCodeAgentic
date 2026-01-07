@@ -1,13 +1,8 @@
-import { UpdateSettingsRequest } from "@shared/proto/cline/state"
 import { Mode } from "@shared/storage/types"
-import { VSCodeCheckbox } from "@vscode/webview-ui-toolkit/react"
 import { useState } from "react"
 import { useExtensionState } from "@/context/ExtensionStateContext"
-import { StateServiceClient } from "@/services/grpc-client"
-import { TabButton } from "../../mcp/configuration/McpConfigurationView"
 import ApiOptions from "../ApiOptions"
 import Section from "../Section"
-import { syncModeConfigurations } from "../utils/providerUtils"
 import { useApiConfigurationHandlers } from "../utils/useApiConfigurationHandlers"
 
 interface ApiConfigurationSectionProps {
@@ -22,7 +17,10 @@ const ApiConfigurationSection = ({ renderSectionHeader }: ApiConfigurationSectio
 		<div>
 			{renderSectionHeader?.("api-config")}
 			<Section>
-				{/* Tabs container */}
+				{/* Always show single API configuration - Plan/Act mode tabs hidden */}
+				<ApiOptions currentMode={mode} showModelOptions={true} />
+
+				{/* Hidden: Plan/Act mode tabs and separation
 				{planActSeparateModelsSetting ? (
 					<div className="rounded-md mb-5">
 						<div className="flex gap-px mb-[10px] -mt-2 border-0 border-b border-solid border-(--vscode-panel-border)">
@@ -48,7 +46,6 @@ const ApiConfigurationSection = ({ renderSectionHeader }: ApiConfigurationSectio
 							</TabButton>
 						</div>
 
-						{/* Content container */}
 						<div className="-mb-3">
 							<ApiOptions currentMode={currentTab} showModelOptions={true} />
 						</div>
@@ -56,7 +53,9 @@ const ApiConfigurationSection = ({ renderSectionHeader }: ApiConfigurationSectio
 				) : (
 					<ApiOptions currentMode={mode} showModelOptions={true} />
 				)}
+				*/}
 
+				{/* Hidden: Plan/Act mode separation checkbox
 				<div className="mb-[5px]">
 					<VSCodeCheckbox
 						checked={planActSeparateModelsSetting}
@@ -84,6 +83,7 @@ const ApiConfigurationSection = ({ renderSectionHeader }: ApiConfigurationSectio
 						helpful e.g. when using a strong reasoning model to architect a plan for a cheaper coding model to act on.
 					</p>
 				</div>
+				*/}
 			</Section>
 		</div>
 	)

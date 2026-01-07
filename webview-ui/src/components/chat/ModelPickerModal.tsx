@@ -46,7 +46,7 @@ const SETTINGS_ONLY_PROVIDERS: ApiProvider[] = [
 	"together",
 ]
 
-const OPENROUTER_MODEL_PROVIDERS: ApiProvider[] = ["cline", "openrouter", "vercel-ai-gateway"]
+const OPENROUTER_MODEL_PROVIDERS: ApiProvider[] = ["openrouter", "vercel-ai-gateway"]
 
 interface ModelPickerModalProps {
 	isOpen: boolean

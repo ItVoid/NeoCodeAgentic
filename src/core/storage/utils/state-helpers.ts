@@ -670,7 +670,7 @@ export async function readGlobalStateFromDisk(context: ExtensionContext): Promis
 			mcpMarketplaceEnabled: mcpMarketplaceEnabledRaw ?? true,
 			mcpDisplayMode: mcpDisplayMode ?? DEFAULT_MCP_DISPLAY_MODE,
 			mcpResponsesCollapsed: mcpResponsesCollapsed,
-			telemetrySetting: telemetrySetting || "unset",
+			telemetrySetting: telemetrySetting || "disabled",
 			planActSeparateModelsSetting: planActSeparateModelsSetting ?? false,
 			enableCheckpointsSetting: enableCheckpointsSettingRaw ?? true,
 			shellIntegrationTimeout: shellIntegrationTimeout || 4000,
