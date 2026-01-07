@@ -42,7 +42,6 @@ import { ICheckpointManager } from "@integrations/checkpoints/types"
 import { DiffViewProvider } from "@integrations/editor/DiffViewProvider"
 import { formatContentBlockToMarkdown } from "@integrations/misc/export-markdown"
 import { processFilesIntoText } from "@integrations/misc/extract-text"
-import { showSystemNotification } from "@integrations/notifications"
 import { ITerminalManager } from "@integrations/terminal/types"
 import { BrowserSession } from "@services/browser/BrowserSession"
 import { UrlContentFetcher } from "@services/browser/UrlContentFetcher"
@@ -809,7 +808,7 @@ export class Task {
 	async sayAndCreateMissingParamError(toolName: ClineDefaultTool, paramName: string, relPath?: string) {
 		await this.say(
 			"error",
-			`Cline tried to use ${toolName}${
+			`NeoCode Agentic tried to use ${toolName}${
 				relPath ? ` for '${relPath.toPosix()}'` : ""
 			} without value for required parameter '${paramName}'. Retrying...`,
 		)
@@ -2135,59 +2134,9 @@ export class Task {
 		}
 
 		if (this.taskState.consecutiveMistakeCount >= this.stateManager.getGlobalSettingsKey("maxConsecutiveMistakes")) {
-			// In yolo mode, don't wait for user input - fail the task
-			if (this.stateManager.getGlobalSettingsKey("yoloModeToggled")) {
-				const errorMessage =
-					`[YOLO MODE] Task failed: Too many consecutive mistakes (${this.taskState.consecutiveMistakeCount}). ` +
-					`The model may not be capable enough for this task. Consider using a more capable model.`
-				await this.say("error", errorMessage)
-				// End the task loop with failure
-				return true // didEndLoop = true, signals task completion/failure
-			}
-
-			const autoApprovalSettings = this.stateManager.getGlobalSettingsKey("autoApprovalSettings")
-			if (autoApprovalSettings.enableNotifications) {
-				showSystemNotification({
-					subtitle: "Error",
-					message: "Cline is having trouble. Would you like to continue the task?",
-				})
-			}
-			const { response, text, images, files } = await this.ask(
-				"mistake_limit_reached",
-				this.api.getModel().id.includes("claude")
-					? `This may indicate a failure in his thought process or inability to use a tool properly, which can be mitigated with some user guidance (e.g. "Try breaking down the task into smaller steps").`
-					: "Cline uses complex prompts and iterative task execution that may be challenging for less capable models. For best results, it's recommended to use Claude 4 Sonnet for its advanced agentic coding capabilities.",
-			)
-			if (response === "messageResponse") {
-				// Display the user's message in the chat UI
-				await this.say("user_feedback", text, images, files)
-
-				// This userContent is for the *next* API call.
-				const feedbackUserContent: ClineUserContent[] = []
-				feedbackUserContent.push({
-					type: "text",
-					text: formatResponse.tooManyMistakes(text),
-				})
-				if (images && images.length > 0) {
-					feedbackUserContent.push(...formatResponse.imageBlocks(images))
-				}
-
-				let fileContentString = ""
-				if (files && files.length > 0) {
-					fileContentString = await processFilesIntoText(files)
-				}
-
-				if (fileContentString) {
-					feedbackUserContent.push({
-						type: "text",
-						text: fileContentString,
-					})
-				}
-
-				userContent = feedbackUserContent
-			}
+			// Automatically reset counters and continue without user intervention
 			this.taskState.consecutiveMistakeCount = 0
-			this.taskState.autoRetryAttempts = 0 // need to reset this if the user chooses to manually retry after the mistake limit is reached
+			this.taskState.autoRetryAttempts = 0
 		}
 
 		// get previous api req's index to check token usage and determine if we need to truncate conversation history

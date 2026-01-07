@@ -77,7 +77,7 @@ export async function initializeTestMode(webviewProvider?: any): Promise<vscode.
 		Logger.log(`evals.env file created at ${uri.fsPath}`)
 		if (!isInTestMode()) {
 			setTestMode(true)
-			vscode.commands.executeCommand("setContext", "cline.isTestMode", true)
+			vscode.commands.executeCommand("setContext", "neocode.isTestMode", true)
 			createTestServer(webviewProvider)
 		}
 	})
@@ -88,7 +88,7 @@ export async function initializeTestMode(webviewProvider?: any): Promise<vscode.
 		// Only deactivate if this was the last evals.env file
 		if (!checkForTestMode()) {
 			setTestMode(false)
-			vscode.commands.executeCommand("setContext", "cline.isTestMode", false)
+			vscode.commands.executeCommand("setContext", "neocode.isTestMode", false)
 			shutdownTestServer()
 		}
 	})

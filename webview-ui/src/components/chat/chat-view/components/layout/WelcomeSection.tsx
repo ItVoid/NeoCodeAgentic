@@ -1,11 +1,9 @@
 import { BANNER_DATA, BannerAction, BannerActionType, BannerCardData } from "@shared/cline/banner"
 import { EmptyRequest, Int64Request } from "@shared/proto/index.cline"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import BannerCarousel from "@/components/common/BannerCarousel"
+import React, { useCallback, useMemo } from "react"
 import { CURRENT_CLI_BANNER_VERSION } from "@/components/common/CliInstallBanner"
 import { CURRENT_INFO_BANNER_VERSION } from "@/components/common/InfoBanner"
 import { CURRENT_MODEL_BANNER_VERSION } from "@/components/common/NewModelBanner"
-import WhatsNewModal from "@/components/common/WhatsNewModal"
 import HistoryPreview from "@/components/history/HistoryPreview"
 import { useApiConfigurationHandlers } from "@/components/settings/utils/useApiConfigurationHandlers"
 import HomeHeader from "@/components/welcome/HomeHeader"
@@ -31,27 +29,9 @@ export const WelcomeSection: React.FC<WelcomeSectionProps> = ({
 }) => {
 	const { lastDismissedInfoBannerVersion, lastDismissedCliBannerVersion, lastDismissedModelBannerVersion } = useExtensionState()
 
-	// Track if we've shown the "What's New" modal this session
-	const [hasShownWhatsNewModal, setHasShownWhatsNewModal] = useState(false)
-	const [showWhatsNewModal, setShowWhatsNewModal] = useState(false)
-
 	const { clineUser } = useClineAuth()
 	const { openRouterModels, setShowChatModelSelector, navigateToSettings, subagentsEnabled } = useExtensionState()
 	const { handleFieldsChange } = useApiConfigurationHandlers()
-
-	// Show modal when there's a new announcement and we haven't shown it this session
-	useEffect(() => {
-		if (showAnnouncement && !hasShownWhatsNewModal) {
-			setShowWhatsNewModal(true)
-			setHasShownWhatsNewModal(true)
-		}
-	}, [showAnnouncement, hasShownWhatsNewModal])
-
-	const handleCloseWhatsNewModal = useCallback(() => {
-		setShowWhatsNewModal(false)
-		// Call hideAnnouncement to persist dismissal (same as old banner behavior)
-		hideAnnouncement()
-	}, [hideAnnouncement])
 
 	/**
 	 * Check if a banner has been dismissed based on its version
@@ -180,20 +160,12 @@ export const WelcomeSection: React.FC<WelcomeSectionProps> = ({
 
 	return (
 		<div className="flex flex-col flex-1 w-full h-full p-0 m-0">
-			<WhatsNewModal onClose={handleCloseWhatsNewModal} open={showWhatsNewModal} version={version} />
 			<div className="overflow-y-auto flex flex-col pb-2.5">
 				<HomeHeader shouldShowQuickWins={shouldShowQuickWins} />
-				{!showWhatsNewModal && (
-					<>
-						<div className="animate-fade-in">
-							<BannerCarousel banners={activeBanners} />
-						</div>
-						{!shouldShowQuickWins && taskHistory.length > 0 && (
-							<div className="animate-fade-in opacity-0">
-								<HistoryPreview showHistoryView={showHistoryView} />
-							</div>
-						)}
-					</>
+				{!shouldShowQuickWins && taskHistory.length > 0 && (
+					<div className="animate-fade-in opacity-0">
+						<HistoryPreview showHistoryView={showHistoryView} />
+					</div>
 				)}
 			</div>
 			<SuggestedTasks shouldShowQuickWins={shouldShowQuickWins} />

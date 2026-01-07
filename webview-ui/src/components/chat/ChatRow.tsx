@@ -468,7 +468,9 @@ export const ChatRowContent = memo(
 								color: normalColor,
 								marginBottom: "-1.5px",
 							}}></span>,
-						<span style={{ color: normalColor, fontWeight: "bold" }}>Cline wants to execute this command:</span>,
+						<span style={{ color: normalColor, fontWeight: "bold" }}>
+							NeoCode Agentic wants to execute this command:
+						</span>,
 					]
 				case "use_mcp_server":
 					const mcpServerUse = JSON.parse(message.text || "{}") as ClineAskUseMcpServer
@@ -486,7 +488,7 @@ export const ChatRowContent = memo(
 						<span
 							className="ph-no-capture"
 							style={{ color: normalColor, fontWeight: "bold", wordBreak: "break-word" }}>
-							Cline wants to {mcpServerUse.type === "use_mcp_tool" ? "use a tool" : "access a resource"} on the{" "}
+							NeoCode wants to {mcpServerUse.type === "use_mcp_tool" ? "use a tool" : "access a resource"} on the{" "}
 							<code style={{ wordBreak: "break-all" }}>
 								{getMcpServerDisplayName(mcpServerUse.serverName, mcpMarketplaceCatalog)}
 							</code>{" "}
@@ -518,7 +520,7 @@ export const ChatRowContent = memo(
 								color: normalColor,
 								marginBottom: "-1.5px",
 							}}></span>,
-						<span style={{ color: normalColor, fontWeight: "bold" }}>Cline has a question:</span>,
+						<span style={{ color: normalColor, fontWeight: "bold" }}>NeoCode Agentic has a question:</span>,
 					]
 				default:
 					return [null, null]
@@ -585,7 +587,7 @@ export const ChatRowContent = memo(
 					const isApplyingPatch = content?.startsWith("%%bash") && !content.endsWith("*** End Patch\nEOF")
 					const editToolTitle = isApplyingPatch
 						? "Cline is creating patches to edit this file:"
-						: "Cline wants to edit this file:"
+						: "NeoCode wants  to edit this file:"
 					return (
 						<>
 							<div style={headerStyle}>
@@ -614,7 +616,7 @@ export const ChatRowContent = memo(
 								{toolIcon("diff-removed")}
 								{tool.operationIsLocatedInWorkspace === false &&
 									toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
-								<span style={{ fontWeight: "bold" }}>Cline wants to delete this file:</span>
+								<span style={{ fontWeight: "bold" }}>NeoCode wants to delete this file:</span>
 							</div>
 							<CodeAccordian
 								// isLoading={message.partial}
@@ -632,7 +634,7 @@ export const ChatRowContent = memo(
 								{toolIcon("new-file")}
 								{tool.operationIsLocatedInWorkspace === false &&
 									toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
-								<span style={{ fontWeight: "bold" }}>Cline wants to create a new file:</span>
+								<span style={{ fontWeight: "bold" }}>NeoCode wants to create a new file:</span>
 							</div>
 							{backgroundEditEnabled && tool.path && tool.content ? (
 								<DiffEditRow patch={tool.content} path={tool.path} />
@@ -657,7 +659,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
 								<span style={{ fontWeight: "bold" }}>
 									{/* {message.type === "ask" ? "" : "Cline read this file:"} */}
-									Cline wants to read this file:
+									NeoCode wants to read this file:
 								</span>
 							</div>
 							<div
@@ -724,7 +726,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 								<span style={{ fontWeight: "bold" }}>
 									{message.type === "ask"
-										? "Cline wants to view the top level files in this directory:"
+										? "NeoCode wants  to view the top level files in this directory:"
 										: "Cline viewed the top level files in this directory:"}
 								</span>
 							</div>
@@ -746,7 +748,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 								<span style={{ fontWeight: "bold" }}>
 									{message.type === "ask"
-										? "Cline wants to recursively view all files in this directory:"
+										? "NeoCode wants  to recursively view all files in this directory:"
 										: "Cline recursively viewed all files in this directory:"}
 								</span>
 							</div>
@@ -768,7 +770,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
 								<span style={{ fontWeight: "bold" }}>
 									{message.type === "ask"
-										? "Cline wants to view source code definition names used in this directory:"
+										? "NeoCode wants  to view source code definition names used in this directory:"
 										: "Cline viewed source code definition names used in this directory:"}
 								</span>
 							</div>
@@ -788,7 +790,7 @@ export const ChatRowContent = memo(
 								{tool.operationIsLocatedInWorkspace === false &&
 									toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 								<span style={{ fontWeight: "bold" }}>
-									Cline wants to search this directory for{" "}
+									NeoCode wants to search this directory for{" "}
 									<code style={{ wordBreak: "break-all" }}>{tool.regex}</code>:
 								</span>
 							</div>
@@ -898,7 +900,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This URL is external")}
 								<span style={{ fontWeight: "bold" }}>
 									{message.type === "ask"
-										? "Cline wants to fetch content from this URL:"
+										? "NeoCode wants  to fetch content from this URL:"
 										: "Cline fetched content from this URL:"}
 								</span>
 							</div>
@@ -953,7 +955,7 @@ export const ChatRowContent = memo(
 									toolIcon("sign-out", "yellow", -90, "This search is external")}
 								<span style={{ fontWeight: "bold" }}>
 									{message.type === "ask"
-										? "Cline wants to search the web for:"
+										? "NeoCode wants  to search the web for:"
 										: "Cline searched the web for:"}
 								</span>
 							</div>
@@ -1089,7 +1091,7 @@ export const ChatRowContent = memo(
 			)
 
 			const displayTitle = isSubagentCommand ? (
-				<span style={{ color: normalColor, fontWeight: "bold" }}>Cline wants to use a subagent:</span>
+				<span style={{ color: normalColor, fontWeight: "bold" }}>NeoCode wants to use a subagent:</span>
 			) : (
 				title
 			)
@@ -2163,7 +2165,7 @@ export const ChatRowContent = memo(
 											marginBottom: "-1.5px",
 										}}></span>
 									<span style={{ color: normalColor, fontWeight: "bold" }}>
-										Cline wants to start a new task:
+										NeoCode wants to start a new task:
 									</span>
 								</div>
 								<NewTaskPreview context={message.text || ""} />
@@ -2180,7 +2182,7 @@ export const ChatRowContent = memo(
 											marginBottom: "-1.5px",
 										}}></span>
 									<span style={{ color: normalColor, fontWeight: "bold" }}>
-										Cline wants to condense your conversation:
+										NeoCode wants to condense your conversation:
 									</span>
 								</div>
 								<NewTaskPreview context={message.text || ""} />
@@ -2197,7 +2199,7 @@ export const ChatRowContent = memo(
 											marginBottom: "-1.5px",
 										}}></span>
 									<span style={{ color: normalColor, fontWeight: "bold" }}>
-										Cline wants to create a Github issue:
+										NeoCode wants to create a Github issue:
 									</span>
 								</div>
 								<ReportBugPreview data={message.text || ""} />

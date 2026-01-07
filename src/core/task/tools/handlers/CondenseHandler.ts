@@ -33,7 +33,7 @@ export class CondenseHandler implements IToolHandler, IPartialBlockHandler {
 		// Show notification if enabled
 		if (config.autoApprovalSettings.enableNotifications) {
 			showSystemNotification({
-				subtitle: "Cline wants to condense the conversation...",
+				subtitle: "NeoCode wants  to condense the conversation...",
 				message: `Cline is suggesting to condense your conversation with: ${context}`,
 			})
 		}

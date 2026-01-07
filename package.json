@@ -1,22 +1,22 @@
 {
-	"name": "claude-dev",
-	"displayName": "Cline",
+	"name": "neocode-agentic",
+	"displayName": "NeoCode Agentic",
 	"description": "Autonomous coding agent right in your IDE, capable of creating/editing files, running commands, using the browser, and more with your permission every step of the way.",
-	"version": "3.46.1",
+	"version": "1.0.0",
 	"icon": "assets/icons/icon.png",
 	"engines": {
 		"vscode": "^1.84.0"
 	},
 	"author": {
-		"name": "Cline Bot Inc."
+		"name": "NeoAI"
 	},
 	"license": "Apache-2.0",
-	"publisher": "saoudrizwan",
+	"publisher": "",
 	"repository": {
-		"type": "git",
-		"url": "https://github.com/cline/cline"
+		"type": "",
+		"url": ""
 	},
-	"homepage": "https://cline.bot",
+	"homepage": "",
 	"categories": [
 		"AI",
 		"Chat",
@@ -47,7 +47,7 @@
 	"main": "./dist/extension.js",
 	"contributes": {
 		"icons": {
-			"cline-icon": {
+			"neocode-icon": {
 				"description": "cline",
 				"default": {
 					"fontPath": "assets/icons/cline-bot.woff",
@@ -58,21 +58,21 @@
 		"walkthroughs": [
 			{
 				"id": "ClineWalkthrough",
-				"title": "Meet Cline, your new coding partner",
-				"description": "Cline codes like a developer because it thinks like one. Here are 5 ways to put it to work:",
+				"title": "Meet NeoCode Agentic, your new coding partner",
+				"description": "NeoCode Agentic codes like a developer because it thinks like one. Here are 5 ways to put it to work:",
 				"steps": [
 					{
 						"id": "welcome",
 						"title": "Start with a Goal, Not Just a Prompt",
-						"description": "Tell Cline what you want to achieve. It plans, asks, and then codes, like a true partner.",
+						"description": "Tell NeoCode what you want to achieve. It plans, asks, and then codes, like a true partner.",
 						"media": {
 							"markdown": "walkthrough/step1.md"
 						}
 					},
 					{
 						"id": "learn",
-						"title": "Let Cline Learn Your Codebase",
-						"description": "Point Cline to your project. It builds understanding to make smart, context-aware changes.",
+						"title": "Let NeoCode Learn Your Codebase",
+						"description": "Point NeoCode to your project. It builds understanding to make smart, context-aware changes.",
 						"media": {
 							"markdown": "walkthrough/step2.md"
 						}
@@ -80,7 +80,7 @@
 					{
 						"id": "advanced-features",
 						"title": "Always Use the Best AI Models",
-						"description": "Cline empowers you with State-of-the-Art AI, connecting to top models (Anthropic, Gemini, OpenAI & more).",
+						"description": "NeoCode empowers you with State-of-the-Art AI, connecting to top models (Anthropic, Gemini, OpenAI & more).",
 						"media": {
 							"markdown": "walkthrough/step3.md"
 						}
@@ -96,7 +96,7 @@
 					{
 						"id": "getting-started",
 						"title": "You're Always in Control",
-						"description": "Review Cline's plans and diffs. Approve changes before they happen. No surprises.",
+						"description": "Review NeoCode Agentic's plans and diffs. Approve changes before they happen. No surprises.",
 						"media": {
 							"markdown": "walkthrough/step5.md"
 						},
@@ -110,17 +110,17 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "claude-dev-ActivityBar",
+					"id": "neocode-agentic-ActivityBar",
 					"title": "NeoCode Agentic",
 					"icon": "assets/icons/icon.png"
 				}
 			]
 		},
 		"views": {
-			"claude-dev-ActivityBar": [
+			"neocode-agentic-ActivityBar": [
 				{
 					"type": "webview",
-					"id": "claude-dev.SidebarProvider",
+					"id": "neocode-agentic.SidebarProvider",
 					"name": "",
 					"icon": "assets/icons/icon.svg"
 				}
@@ -128,94 +128,94 @@
 		},
 		"commands": [
 			{
-				"command": "cline.plusButtonClicked",
+				"command": "neocode.plusButtonClicked",
 				"title": "New Task",
 				"icon": "$(add)"
 			},
 			{
-				"command": "cline.mcpButtonClicked",
+				"command": "neocode.mcpButtonClicked",
 				"title": "MCP Servers",
 				"icon": "$(server)"
 			},
 			{
-				"command": "cline.historyButtonClicked",
+				"command": "neocode.historyButtonClicked",
 				"title": "History",
 				"icon": "$(history)"
 			},
 			{
-				"command": "cline.settingsButtonClicked",
+				"command": "neocode.settingsButtonClicked",
 				"title": "Settings",
 				"icon": "$(settings-gear)"
 			},
 			{
-				"command": "cline.dev.createTestTasks",
+				"command": "neocode.dev.createTestTasks",
 				"title": "Create Test Tasks",
-				"category": "Cline",
-				"when": "cline.isDevMode"
+				"category": "NeoCode Agentic",
+				"when": "neocode.isDevMode"
 			},
 			{
-				"command": "cline.dev.expireMcpOAuthTokens",
+				"command": "neocode.dev.expireMcpOAuthTokens",
 				"title": "Expire MCP OAuth Tokens (for testing)",
-				"category": "Cline",
-				"when": "cline.isDevMode"
+				"category": "NeoCode Agentic",
+				"when": "neocode.isDevMode"
 			},
 			{
-				"command": "cline.addToChat",
-				"title": "Add to Cline",
-				"category": "Cline"
+				"command": "neocode.addToChat",
+				"title": "Add to NeoCode Agentic",
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.addTerminalOutputToChat",
-				"title": "Add to Cline",
-				"category": "Cline"
+				"command": "neocode.addTerminalOutputToChat",
+				"title": "Add to NeoCode Agentic",
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.focusChatInput",
+				"command": "neocode.focusChatInput",
 				"title": "Jump to Chat Input",
-				"category": "Cline"
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.generateGitCommitMessage",
-				"title": "Generate Commit Message with Cline",
-				"category": "Cline",
-				"icon": "$(cline-icon)"
+				"command": "neocode.generateGitCommitMessage",
+				"title": "Generate Commit Message with NeoCode Agentic",
+				"category": "NeoCode Agentic",
+				"icon": "$(neocode-icon)"
 			},
 			{
-				"command": "cline.abortGitCommitMessage",
-				"title": "Generate Commit Message with Cline - Stop",
-				"category": "Cline",
+				"command": "neocode.abortGitCommitMessage",
+				"title": "Generate Commit Message with NeoCode Agentic - Stop",
+				"category": "NeoCode Agentic",
 				"icon": "$(debug-stop)"
 			},
 			{
-				"command": "cline.explainCode",
-				"title": "Explain with Cline",
-				"category": "Cline"
+				"command": "neocode.explainCode",
+				"title": "Explain with NeoCode Agentic",
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.improveCode",
-				"title": "Improve with Cline",
-				"category": "Cline"
+				"command": "neocode.improveCode",
+				"title": "Improve with NeoCode Agentic",
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.openWalkthrough",
+				"command": "neocode.openWalkthrough",
 				"title": "Open Walkthrough",
-				"category": "Cline"
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.reconstructTaskHistory",
+				"command": "neocode.reconstructTaskHistory",
 				"title": "Reconstruct Task History",
-				"category": "Cline"
+				"category": "NeoCode Agentic"
 			},
 			{
-				"command": "cline.reviewComment.reply",
+				"command": "neocode.reviewComment.reply",
 				"title": "Reply",
-				"category": "Cline",
+				"category": "NeoCode Agentic",
 				"enablement": "!commentIsEmpty"
 			},
 			{
-				"command": "cline.reviewComment.addToChat",
-				"title": "Add to Cline Chat",
-				"category": "Cline",
+				"command": "neocode.reviewComment.addToChat",
+				"title": "Add to NeoCode Agentic Chat",
+				"category": "NeoCode Agentic",
 				"icon": "$(link-external)"
 			}
 		],
@@ -223,10 +223,10 @@
 			{
 				"command": "editor.action.submitComment",
 				"key": "enter",
-				"when": "commentEditorFocused && commentController == cline-ai-review && !commentIsEmpty"
+				"when": "commentEditorFocused && commentController == neocode-ai-review && !commentIsEmpty"
 			},
 			{
-				"command": "cline.addToChat",
+				"command": "neocode.addToChat",
 				"key": "cmd+'",
 				"mac": "cmd+'",
 				"win": "ctrl+'",
@@ -234,11 +234,11 @@
 				"when": "editorHasSelection"
 			},
 			{
-				"command": "cline.generateGitCommitMessage",
+				"command": "neocode.generateGitCommitMessage",
 				"when": "config.git.enabled && scmProvider == git"
 			},
 			{
-				"command": "cline.focusChatInput",
+				"command": "neocode.focusChatInput",
 				"key": "cmd+'",
 				"mac": "cmd+'",
 				"win": "ctrl+'",
@@ -249,82 +249,82 @@
 		"menus": {
 			"view/title": [
 				{
-					"command": "cline.plusButtonClicked",
+					"command": "neocode.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == neocode-agentic.SidebarProvider"
 				},
 				{
-					"command": "cline.mcpButtonClicked",
+					"command": "neocode.mcpButtonClicked",
 					"group": "navigation@2",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == neocode-agentic.SidebarProvider"
 				},
 				{
-					"command": "cline.historyButtonClicked",
+					"command": "neocode.historyButtonClicked",
 					"group": "navigation@3",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == neocode-agentic.SidebarProvider"
 				},
 				{
-					"command": "cline.settingsButtonClicked",
+					"command": "neocode.settingsButtonClicked",
 					"group": "navigation@6",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == neocode-agentic.SidebarProvider"
 				}
 			],
 			"editor/context": [
 				{
-					"command": "cline.addToChat",
+					"command": "neocode.addToChat",
 					"group": "navigation",
 					"when": "editorHasSelection"
 				}
 			],
 			"terminal/context": [
 				{
-					"command": "cline.addTerminalOutputToChat",
+					"command": "neocode.addTerminalOutputToChat",
 					"group": "navigation"
 				}
 			],
 			"scm/title": [
 				{
-					"command": "cline.generateGitCommitMessage",
+					"command": "neocode.generateGitCommitMessage",
 					"group": "navigation",
-					"when": "config.git.enabled && scmProvider == git && !cline.isGeneratingCommit"
+					"when": "config.git.enabled && scmProvider == git && !neocode.isGeneratingCommit"
 				},
 				{
-					"command": "cline.abortGitCommitMessage",
+					"command": "neocode.abortGitCommitMessage",
 					"group": "navigation",
-					"when": "config.git.enabled && scmProvider == git && cline.isGeneratingCommit"
+					"when": "config.git.enabled && scmProvider == git && neocode.isGeneratingCommit"
 				}
 			],
 			"commandPalette": [
 				{
-					"command": "cline.generateGitCommitMessage",
-					"when": "config.git.enabled && !cline.isGeneratingCommit"
+					"command": "neocode.generateGitCommitMessage",
+					"when": "config.git.enabled && !neocode.isGeneratingCommit"
 				},
 				{
-					"command": "cline.abortGitCommitMessage",
-					"when": "config.git.enabled && cline.isGeneratingCommit"
+					"command": "neocode.abortGitCommitMessage",
+					"when": "config.git.enabled && neocode.isGeneratingCommit"
 				},
 				{
-					"command": "cline.reviewComment.reply",
+					"command": "neocode.reviewComment.reply",
 					"when": "false"
 				}
 			],
 			"comments/commentThread/context": [
 				{
-					"command": "cline.reviewComment.reply",
+					"command": "neocode.reviewComment.reply",
 					"group": "inline",
-					"when": "commentController == cline-ai-review"
+					"when": "commentController == neocode-ai-review"
 				}
 			],
 			"comments/commentThread/title": [
 				{
-					"command": "cline.reviewComment.addToChat",
+					"command": "neocode.reviewComment.addToChat",
 					"group": "inline",
-					"when": "commentController == cline-ai-review"
+					"when": "commentController == neocode-ai-review"
 				}
 			]
 		},
 		"configuration": {
-			"title": "Cline",
+			"title": "NeoCode Agentic",
 			"properties": {}
 		}
 	},
