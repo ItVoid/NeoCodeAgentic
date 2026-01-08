@@ -13,8 +13,8 @@ type UserTypeSelection = {
 export const STEP_CONFIG = {
 	0: {
 		title: "NeoCode Agentic",
-		description: "Fill the form to use it!",
-		buttons: [{ text: "Continue", action: "next", variant: "default" }],
+		description: "Configure your provider to get started",
+		buttons: [{ text: "Continue", action: "done", variant: "default" }],
 	},
 	[NEW_USER_TYPE.FREE]: {
 		title: "Select a free model",

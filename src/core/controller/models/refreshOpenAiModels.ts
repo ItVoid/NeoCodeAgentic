@@ -14,11 +14,11 @@ import { Controller } from ".."
 export async function refreshOpenAiModels(_controller: Controller, request: OpenAiModelsRequest): Promise<StringArray> {
 	try {
 		if (!request.baseUrl) {
-			return StringArray.create({ values: [] })
+			throw new Error("Base URL is required")
 		}
 
 		if (!URL.canParse(request.baseUrl)) {
-			return StringArray.create({ values: [] })
+			throw new Error("Invalid Base URL format")
 		}
 
 		const config: AxiosRequestConfig = {}
@@ -33,6 +33,10 @@ export async function refreshOpenAiModels(_controller: Controller, request: Open
 		return StringArray.create({ values: models })
 	} catch (error) {
 		console.error("Error fetching OpenAI models:", error)
-		return StringArray.create({ values: [] })
+		// Re-throw the error so it reaches the webview
+		if (error instanceof Error) {
+			throw error
+		}
+		throw new Error("Failed to fetch models. Please check your Base URL and API Key.")
 	}
 }

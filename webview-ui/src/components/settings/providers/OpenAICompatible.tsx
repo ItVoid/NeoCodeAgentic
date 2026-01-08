@@ -30,6 +30,7 @@ export const OpenAICompatibleProvider = ({ showModelOptions, isPopup, currentMod
 	const [modelConfigurationSelected, setModelConfigurationSelected] = useState(false)
 	const [availableModels, setAvailableModels] = useState<string[]>([])
 	const [isLoadingModels, setIsLoadingModels] = useState(false)
+	const [modelError, setModelError] = useState<string | null>(null)
 
 	// Get the normalized configuration
 	const { selectedModelId, selectedModelInfo } = normalizeApiConfiguration(apiConfiguration, currentMode)
@@ -62,6 +63,7 @@ export const OpenAICompatibleProvider = ({ showModelOptions, isPopup, currentMod
 
 		if (baseUrl && apiKey) {
 			setIsLoadingModels(true)
+			setModelError(null)
 			debounceTimerRef.current = setTimeout(() => {
 				ModelsServiceClient.refreshOpenAiModels(
 					OpenAiModelsRequest.create({
@@ -72,16 +74,42 @@ export const OpenAICompatibleProvider = ({ showModelOptions, isPopup, currentMod
 					.then((response) => {
 						setAvailableModels(response.values || [])
 						setIsLoadingModels(false)
+						setModelError(null)
 					})
 					.catch((error) => {
 						console.error("Failed to refresh OpenAI models:", error)
 						setAvailableModels([])
 						setIsLoadingModels(false)
+
+						// Extract meaningful error message
+						let errorMessage = "Failed to load models. Please check your Base URL and API Key."
+
+						if (error.message) {
+							if (error.message.includes("Network Error")) {
+								errorMessage = "Network Error: Unable to connect to the API. Please verify your Base URL."
+							} else if (error.message.includes("401")) {
+								errorMessage = "Authentication Error (401): Invalid API Key. Please check your credentials."
+							} else if (error.message.includes("403")) {
+								errorMessage =
+									"Access Forbidden (403): Your API Key doesn't have permission to access this endpoint."
+							} else if (error.message.includes("404")) {
+								errorMessage = "Not Found (404): The API endpoint doesn't exist. Please verify your Base URL."
+							} else if (error.message.includes("500")) {
+								errorMessage = "Server Error (500): The API server encountered an error. Please try again later."
+							} else if (error.message.includes("timeout")) {
+								errorMessage = "Request Timeout: The server took too long to respond. Please try again."
+							} else {
+								errorMessage = `Error: ${error.message}`
+							}
+						}
+
+						setModelError(errorMessage)
 					})
 			}, 500)
 		} else {
 			setAvailableModels([])
 			setIsLoadingModels(false)
+			setModelError(null)
 		}
 	}, [])
 
@@ -127,6 +155,19 @@ export const OpenAICompatibleProvider = ({ showModelOptions, isPopup, currentMod
 				<span style={{ fontWeight: 500, display: "block", marginBottom: 4 }}>Model ID</span>
 				{isLoadingModels ? (
 					<div style={{ fontSize: "12px", color: "var(--vscode-descriptionForeground)" }}>Loading models...</div>
+				) : modelError ? (
+					<div
+						style={{
+							fontSize: "12px",
+							color: "var(--vscode-errorForeground)",
+							backgroundColor: "var(--vscode-inputValidation-errorBackground)",
+							border: "1px solid var(--vscode-inputValidation-errorBorder)",
+							padding: "8px",
+							borderRadius: "3px",
+							marginBottom: "8px",
+						}}>
+						{modelError}
+					</div>
 				) : availableModels.length > 0 ? (
 					<VSCodeDropdown
 						onChange={(e: any) =>
