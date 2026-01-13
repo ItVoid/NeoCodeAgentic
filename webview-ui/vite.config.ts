@@ -83,7 +83,13 @@ export default defineConfig({
 				inlineDynamicImports: true,
 				entryFileNames: `assets/[name].js`,
 				chunkFileNames: `assets/[name].js`,
-				assetFileNames: `assets/[name].[ext]`,
+				assetFileNames: (assetInfo) => {
+					// Include hash for font files to match CSS references
+					if (assetInfo.name?.match(/\.(ttf|woff|woff2|eot|otf)$/)) {
+						return `assets/[name].[hash].[ext]`
+					}
+					return `assets/[name].[ext]`
+				},
 				// Disable compact output for dev build
 				compact: !isDevBuild,
 				// Add generous formatting for dev build

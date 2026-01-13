@@ -2,7 +2,7 @@
 	"name": "neocode-agentic",
 	"displayName": "NeoCode Agentic",
 	"description": "Autonomous coding agent right in your IDE, capable of creating/editing files, running commands, using the browser, and more with your permission every step of the way.",
-	"version": "1.0.0",
+	"version": "1.0.2-Windows",
 	"icon": "assets/icons/icon.png",
 	"engines": {
 		"vscode": "^1.84.0"
